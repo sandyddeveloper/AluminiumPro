@@ -1,0 +1,63 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <link href="{% static 'css/table.css' %}" rel="stylesheet">
+
+<h1>Production Efficiency Data</h1>
+
+{% if data %}
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temperature</th>
+                <th>Pressure</th>
+                <th>Production Output</th>
+                <th>Optimization Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for datas in data %}
+            <tr>
+                <td>{{ datas.date }}</td>
+                <td>{{ datas.temperature }}</td>
+                <td>{{ datas.pressure }}</td>
+                <td>{{ datas.production_output }}</td>
+                <td>{{ datas.optimization_score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No production efficiency data available.</p>
+{% endif %}
+
+<div class="chart-container">
+    <canvas id="productionEfficiencyChart"></canvas>
+</div>
+
+<script>
+const chartData = JSON.parse('{{ chart_data | safe }}');
+console.log(chartData);
+
+const productionEfficiencyCtx = document.getElementById('productionEfficiencyChart').getContext('2d');
+const productionEfficiencyChart = new Chart(productionEfficiencyCtx, {
+    type: 'bar',
+    data: {
+        labels: chartData.labels,
+        datasets: chartData.datasets
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+{% endblock %}

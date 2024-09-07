@@ -1,0 +1,12 @@
+@media (min-width: 1200px) {
+    #main, #footer {
+        margin-left: 300px;
+    }
+}
+#main {
+    margin-top: 60px;
+    padding: 20px 30px;
+    transition: all 0.3s;
+}
+
+ 

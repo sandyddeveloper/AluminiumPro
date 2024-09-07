@@ -1,0 +1,584 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aluminium Pro.</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'main/assets/img/logo.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'main/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'main/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'main/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'main/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'main/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'main/assets/css/main.css' %}" rel="stylesheet">
+  </head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Aluminium Pro.</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="{% url 'profile' %}">Welcome cheft {{request.user.username}}!</a>
+      {% if request.user.is_superuser %}
+      <a class="btn-getstarted" href="{% url 'admin_dashboard' %}">Get Started</a>
+      {% else %}
+      <a class="btn-getstarted" href="{% url 'user_dashboard' %}">Get Started</a>
+      {% endif %}
+
+    </div>
+  </header>
+
+  <main class="main">
+
+   <!-- Hero Section -->
+<section id="hero" class="hero section dark-background">
+
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+        <h1>Optimize Your Aluminum Manufacturing with Predictive Analytics</h1>
+        <p>We are dedicated to revolutionizing the aluminum industry with advanced predictive analytics, driving efficiency and sustainability.</p>
+        <div class="d-flex">
+        {% if request.user.is_superuser %}
+          <a href="{% url 'admin_dashboard' %}" class="btn-get-started">Get Started</a>
+          {% else %}
+          <a href="{% url 'user_dashboard' %}" class="btn-get-started">Get Started</a>
+          {% endif %}
+          <a href="#" class="glightbox btn-watch-video d-flex align-items-center">
+            <i class="bi bi-play-circle"></i><span>Watch Video</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
+        <img src="{% static 'main/assets/img/hero-img.png' %}" class="img-fluid animated" alt="Aluminum Manufacturing">
+      </div>
+    </div>
+  </div>
+
+</section><!-- /Hero Section -->
+
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients section light-background">
+
+      <div class="container" data-aos="zoom-in">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 5,
+                  "spaceBetween": 120
+                },
+                "1200": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="{% static 'main/assets/img/one.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'main/assets/img/two.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'main/assets/img/three.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'main/assets/img/four.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'main/assets/img/five.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'main/assets/img/six.png' %}" class="img-fluid" alt=""></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Clients Section -->
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+<div class="container section-title" data-aos="fade-up">
+  <h2>About Us</h2>
+</div><!-- End Section Title -->
+
+<div class="container">
+
+  <div class="row gy-4">
+
+    <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="50">
+      <p>
+        Our project focuses on revolutionizing the aluminum manufacturing industry by applying predictive analytics to enhance efficiency and cost-effectiveness. We aim to provide precise predictions for material requirements, optimizing production processes while minimizing waste.
+      </p>
+      <ul>
+        <li><i class="bi bi-check2-circle"></i> <span>Advanced models to predict material quantities and optimize resource utilization.</span></li>
+        <li><i class="bi bi-check2-circle"></i> <span>Effective scrap management strategies for sustainable manufacturing.</span></li>
+        <li><i class="bi bi-check2-circle"></i> <span>Real-time monitoring and intuitive dashboards for data-driven decision-making.</span></li>
+      </ul>
+    </div>
+
+    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+      <p>Our system integrates predictive models into core business operations, improving responsiveness to market demands while fostering sustainable growth. This not only enhances profitability but also supports environmental stewardship by minimizing material waste.</p>
+      <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+    </div>
+
+  </div>
+
+</div>
+
+
+    <!-- Why Us Section -->
+<section id="why-us" class="section why-us light-background" data-builder="section">
+
+  <div class="container-fluid">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
+
+        <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
+          <h3><span>Why Choose Our Predictive Analytics Solution</span> <strong>for Aluminum Manufacturing?</strong></h3>
+          <p>
+            Our project leverages cutting-edge predictive analytics to enhance operational efficiency, reduce costs, and minimize waste in the aluminum industry. By implementing advanced statistical models, we optimize resource utilization and improve overall manufacturing performance.
+          </p>
+        </div>
+
+        <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="faq-item faq-active">
+            <h3><span>01</span> How does predictive analytics improve efficiency?</h3>
+            <div class="faq-content">
+              <p>Our system predicts material requirements accurately, streamlining the production process and minimizing resource wastage. This allows manufacturers to optimize inventory and ensure smooth production cycles.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3><span>02</span> What role does scrap management play?</h3>
+            <div class="faq-content">
+              <p>Effective scrap management strategies are integrated into our predictive models. This allows manufacturers to reutilize aluminum scrap, promoting sustainability and reducing raw material costs.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3><span>03</span> How does your solution benefit businesses?</h3>
+            <div class="faq-content">
+              <p>Our system enhances decision-making by providing real-time insights through user-friendly dashboards, enabling businesses to respond quickly to market demands, reduce costs, and increase profitability.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-5 order-1 order-lg-2 why-us-img">
+        <img src="{% static 'main/assets/img/why-us.png' %}" class="img-fluid" alt="Predictive Analytics in Aluminum Manufacturing" data-aos="zoom-in" data-aos-delay="100">
+      </div>
+    </div>
+
+  </div>
+
+</section><!-- /Why Us Section -->
+
+
+   <!-- Skills Section -->
+<section id="skills" class="skills section">
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row">
+
+      <div class="col-lg-6 d-flex align-items-center">
+        <img src="{% static 'main/assets/img/skills.png' %}" class="img-fluid" alt="Skills">
+      </div>
+
+      <div class="col-lg-6 pt-4 pt-lg-0 content">
+
+        <h3>Skills and Technologies</h3>
+        <p class="fst-italic">
+          I specialize in leveraging Python alongside other technologies to build efficient and responsive applications.
+        </p>
+
+        <div class="skills-content skills-animation">
+
+          <div class="progress">
+            <span class="skill"><span>Python</span> <i class="val">95%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div><!-- End Skills Item -->
+
+          <div class="progress">
+            <span class="skill"><span>HTML</span> <i class="val">90%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div><!-- End Skills Item -->
+
+          <div class="progress">
+            <span class="skill"><span>CSS & Bootstrap</span> <i class="val">85%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div><!-- End Skills Item -->
+
+          <div class="progress">
+            <span class="skill"><span>JavaScript</span> <i class="val">75%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div><!-- End Skills Item -->
+
+          <div class="progress">
+            <span class="skill"><span>MySQL</span> <i class="val">80%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div><!-- End Skills Item -->
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section><!-- /Skills Section -->
+
+
+  <!-- Services Section -->
+<section id="services" class="services section light-background">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Services</h2>
+    <p>Innovative solutions for optimizing aluminum manufacturing processes through predictive analytics and advanced technology.</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="row gy-4">
+
+      <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="50">
+        <div class="service-item position-relative">
+          <div class="icon"><i class="bi bi-activity icon"></i></div>
+          <h4><a href="" class="stretched-link">Predictive Analytics</a></h4>
+          <p>Leverage data-driven insights to predict material requirements, improve production efficiency, and reduce costs.</p>
+        </div>
+      </div><!-- End Service Item -->
+
+      <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-item position-relative">
+          <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
+          <h4><a href="" class="stretched-link">Scrap Management</a></h4>
+          <p>Implement effective strategies to reutilize scrap materials, promoting sustainability and minimizing waste.</p>
+        </div>
+      </div><!-- End Service Item -->
+
+      <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="150">
+        <div class="service-item position-relative">
+          <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
+          <h4><a href="" class="stretched-link">Real-Time Monitoring</a></h4>
+          <p>Access real-time dashboards that enable effective monitoring and decision-making throughout production processes.</p>
+        </div>
+      </div><!-- End Service Item -->
+
+      <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-item position-relative">
+          <div class="icon"><i class="bi bi-broadcast icon"></i></div>
+          <h4><a href="" class="stretched-link">Operational Optimization</a></h4>
+          <p>Maximize resource utilization by optimizing production schedules, labor, and material usage for enhanced profitability.</p>
+        </div>
+      </div><!-- End Service Item -->
+
+    </div>
+
+  </div>
+
+</section><!-- /Services Section -->
+
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+      <img src="{% static 'main/assets/img/cta-bg.jpg' %}" alt="">
+
+      <div class="container">
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="50">
+          <div class="col-xl-9 text-center text-xl-start">
+            <h3>Call To Action</h3>
+            <p><p>Unlock exclusive benefits and stay ahead of the curve with our latest updates and insights. Join us today and be a part of something great!</p>
+</p>
+          </div>
+          <div class="col-xl-3 cta-btn-container text-center">
+            <a class="cta-btn align-middle" href="#">Call To Action</a>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Call To Action Section -->
+
+   
+    <!-- Team Section -->
+    <section id="team" class="team section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Team</h2>
+       <p>Meet the experts driving innovation and excellence in aluminum production.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="50">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="{% static 'assets/img/santhoshraj.png' %}" class="img-fluid" alt=""></div>
+             <div class="member-info">
+                <h4>Santhosh Raj Kumar</h4>
+                <span>Full Stack Developer (Backend & Frontend)</span>
+                <p>Worked in Python, Django, and frontend technologies, delivering efficient and scalable solutions.</p>
+                <div class="social">
+                    <a href="https://github.com/sandyddeveloper"><i class="bi bi-github"></i></a>
+                    <a href="mailto:santhoshrajk1812@gmail.com"><i class="bi bi-envelope-paper-fill"></i></a>
+                    <a href="https://santhoshdev-seven.vercel.app/"><i class="bi bi-person-check"></i></a>
+                    <a href="https://www.linkedin.com/in/santhosh-raj-k-622179316?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="bi bi-linkedin"></i></a>
+                </div>
+                </div>
+
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="{% static 'assets/img/suresh.jpeg' %}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Suresh</h4>
+                <span>Frontend Assistant</span>
+                <p>Assisted in discussions, resolved frontend issues, and contributed to project problem-solving.</p>
+                <div class="social">
+                    <a href="https://github.com/SureshK2004"><i class="bi bi-github"></i></a>
+                    <a href="mailto:sureshksureshk04@gmail.com"><i class="bi bi-envelope-paper-fill"></i></a>
+                    <a href="https://www.instagram.com/vipsuresh__.o._.o?igsh=eWc1amF4c3JlY2Iz"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/sureshk06?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            </div>
+          </div><!-- End Team Member -->
+        </div>
+      </div>
+    </section><!-- /Team Section -->
+
+
+<!-- Faq Section -->
+<section id="faq-2" class="faq-2 section light-background">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Frequently Asked Questions</h2>
+    <p>Here are some common questions about Django development, predictive analytics, and frontend integration. Feel free to browse through them or reach out if you have more questions!</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="row justify-content-center">
+
+      <div class="col-lg-10">
+
+        <div class="faq-container">
+
+          <div class="faq-item faq-active" data-aos="fade-up" data-aos-delay="100">
+            <i class="faq-icon bi bi-question-circle"></i>
+            <h3>How do you implement predictive analytics in a Django application?</h3>
+            <div class="faq-content">
+              <p>To implement predictive analytics in Django, we typically use machine learning libraries like Scikit-learn or TensorFlow. You can train models on historical data and integrate them with Django views to display the predictions via charts using libraries like Chart.js or Plotly.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+            <i class="faq-icon bi bi-question-circle"></i>
+            <h3>How do I handle both admin and user roles in Django?</h3>
+            <div class="faq-content">
+              <p>In Django, user roles can be managed through groups and permissions. The `User` model can be customized to define admin and regular users with specific access rights. Admin users can have all permissions, while regular users are restricted to viewing specific content like the dashboard.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+            <i class="faq-icon bi bi-question-circle"></i>
+            <h3>What is the best way to display charts in Django?</h3>
+            <div class="faq-content">
+              <p>The best way to display charts in Django is by using JavaScript chart libraries like Chart.js, D3.js, or Plotly. These libraries can dynamically render charts based on data passed from Django views to the frontend, allowing interactive data visualization on dashboards.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+            <i class="faq-icon bi bi-question-circle"></i>
+            <h3>How do I create a custom user authentication system in Django?</h3>
+            <div class="faq-content">
+              <p>To create a custom authentication system, you can override Django's built-in `User` model using the `AbstractBaseUser` class. This allows you to customize fields like email, password, and roles. You can also implement JWT or OAuth for third-party authentication (e.g., Google, GitHub).</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
+            <i class="faq-icon bi bi-question-circle"></i>
+            <h3>How can I optimize frontend performance in a Django app?</h3>
+            <div class="faq-content">
+              <p>Optimizing the frontend in Django involves using tools like lazy loading, image optimization, and minimizing JavaScript and CSS files. Additionally, integrating frontend frameworks like React with Django can enhance the performance of interactive UIs.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section><!-- /Faq Section -->
+
+
+    
+
+  </main>
+
+  <footer id="footer" class="footer">
+
+
+
+    <div class="container footer-top">
+  <div class="row gy-4">
+    <div class="col-lg-4 col-md-6 footer-about">
+      <a href="index.html" class="d-flex align-items-center">
+        <span class="sitename">Aluminium Pro.</span>
+      </a>
+      <div class="footer-contact pt-3">
+        <p>Our company specializes in recycling aluminum waste and providing high-quality aluminum products. Our mission is to ensure sustainable and efficient use of resources through innovation.</p>
+        <p class="mt-3"><strong>Email:</strong> <span>santhoshrajk1812@gmail.com</span></p>
+      </div>
+    </div>
+
+    <div class="col-lg-2 col-md-3 footer-links">
+      <h4>Useful Links</h4>
+      <ul>
+        <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+        <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+        <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+        <li><i class="bi bi-chevron-right"></i> <a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="col-lg-2 col-md-3 footer-links">
+      <h4>Our Services</h4>
+      <ul>
+        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Designing</a></li>
+        <li><i class="bi bi-chevron-right"></i> <a href="#"></a>Web Development</li>
+        <li><i class="bi bi-chevron-right"></i> <a href="#">Product Manufacturing</a></li>
+        <li><i class="bi bi-chevron-right"></i> <a href="#">Research & Development</a></li>
+      </ul>
+    </div>
+
+    <div class="col-lg-4 col-md-12">
+      <h4>Follow Us</h4>
+      <p>Stay connected with us on social media for the latest updates and news in the aluminum recycling industry.</p>
+      <div class="social-links d-flex">
+       <a href="https://github.com/sandyddeveloper"><i class="bi bi-github"></i></a>
+      <a href="mailto:santhoshrajk1812@gmail.com"><i class="bi bi-envelope-paper-fill"></i></a>
+      <a href="https://santhoshdev-seven.vercel.app/"><i class="bi bi-person-check"></i></a>
+      <a href="https://www.linkedin.com/in/santhosh-raj-k-622179316?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Aluminium Pro.</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://github.com/sandyddeveloper">Santhosh Raj</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'main/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'main/assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

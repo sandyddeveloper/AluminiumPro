@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluminum Production Predictions</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Aluminum Production Predictions</h1>
+
+    <canvas id="productionEfficiencyChart"></canvas>
+    <canvas id="wastageAndLossChart"></canvas>
+    <canvas id="costProfitabilityChart"></canvas>
+    <canvas id="environmentImpactChart"></canvas>
+    <canvas id="inventoryManagementChart"></canvas>
+
+    <script>
+        const productionEfficiencyCtx = document.getElementById('productionEfficiencyChart').getContext('2d');
+        const productionEfficiencyChart = new Chart(productionEfficiencyCtx, {
+            type: 'bar', // or 'line', 'pie', etc.
+            data: {
+                labels: ['Temperature', 'Pressure', 'Output'],
+                datasets: [{
+                    label: 'Production Efficiency',
+                    data: [/* data from API */],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)', ...],
+                    borderColor: ['rgba(75, 192, 192, 1)', ...],
+                    borderWidth: 1
+                }]
+            },
+            options: { scales: { y: { beginAtZero: true }}}
+        });
+
+        const productionEfficiencyCtx = document.getElementById('productionEfficiencyChart').getContext('2d');
+        const productionEfficiencyChart = new Chart(productionEfficiencyCtx, {
+            type: 'line', // or 'line', 'pie', etc.
+            data: {
+                labels: ['Temperature', 'Pressure', 'Output'],
+                datasets: [{
+                    label: 'Production Efficiency',
+                    data: [/* data from API */],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)', ...],
+                    borderColor: ['rgba(75, 192, 192, 1)', ...],
+                    borderWidth: 1
+                }]
+            },
+            options: { scales: { y: { beginAtZero: true }}}
+        });
+
+        const productionEfficiencyCtx = document.getElementById('productionEfficiencyChart').getContext('2d');
+        const productionEfficiencyChart = new Chart(productionEfficiencyCtx, {
+            type: 'pie', // or 'line', 'pie', etc.
+            data: {
+                labels: ['Temperature', 'Pressure', 'Output'],
+                datasets: [{
+                    label: 'Production Efficiency',
+                    data: [/* data from API */],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)', ...],
+                    borderColor: ['rgba(75, 192, 192, 1)', ...],
+                    borderWidth: 1
+                }]
+            },
+            options: { scales: { y: { beginAtZero: true }}}
+        });
+        // Repeat similar code for other charts (WastageAndLossChart, CostProfitabilityChart, etc.)
+    </script>
+</body>
+</html>

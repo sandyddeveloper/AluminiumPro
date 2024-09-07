@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | AluminiumPro</title>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>AluminiumPro</h2>
+            <p class="login-box-msg">Create a new account</p>
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" id="username" name="username" required placeholder=" " value="{{ form.username.value|default_if_none:'' }}">
+                    <label for="username">Username</label>
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" name="email" required placeholder=" " value="{{ form.email.value|default_if_none:'' }}">
+                    <label for="email">Email</label>
+                    <div class="input-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password1" name="password1" required placeholder=" ">
+                    <label for="password1">Password</label>
+                    <div class="input-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password2" name="password2" required placeholder=" ">
+                    <label for="password2">Confirm Password</label>
+                    <div class="input-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="login-btn">Register</button>
+                </div>
+                <div class="links">
+                    <a href="{% url 'custom_login' %}">Already have an account? Sign In</a>
+                </div>
+                {% if form.errors %}
+                    <div class="error-messages">
+                        <div class="alert">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="{% static 'js/login.js' %}"></script>
+</body>
+</html>
