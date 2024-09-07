@@ -3,3 +3,4 @@ mysqlclient==2.2.4
 djangorestframework==3.15.2
 chartjs==1.2
 echarts-python==0.1.3
+pillow==10.4.0
