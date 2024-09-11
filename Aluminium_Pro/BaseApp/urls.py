@@ -1,8 +1,5 @@
 from django.urls import path
 from . import views
-from django.contrib.auth import views as auth_views
-
-
 
 
 urlpatterns = [
@@ -15,11 +12,12 @@ urlpatterns = [
     path('register/', views.register, name='register'),  
     path('logout/', views.logout_view, name='logout'),
     
-    path('profile/', views.profile_view, name='profile'),
+    #Profile Section
+    path('view_profile/', views.view_profile, name='view_profile'),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
 
     # Dashboard
-    path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
-    path('user_dashboard/', views.user_dashboard, name='user_dashboard'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 
     # Data Entry by Admin
     path('add-aluminum-data/', views.add_aluminum_data, name='add_aluminum_data'),
@@ -40,14 +38,11 @@ urlpatterns = [
     path('show-inventory-management/', views.InventoryManagementViewSet, name='show-inventory-management'),
     path('show-cost-and-profitability/', views.CostAndProfitabilityViewSet, name='show-cost-and-profitability'),
     path('show-environmental-impact/', views.EnvironmentalImpactViewSet, name='show-environmental-impact'),
-    
-   
 
     # Password Reset (Django built-in views for password reset)
-    path('password-reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('request-reset-email/',views.RequestResetEmailView.as_view(),name='request-reset-email'),
+    path('set-new-password/<uidb64>/<token>/', views.SetNewPasswordView.as_view(), name='set-new-password'),
+    path('success_page/', views.SuccessPage, name='success_page'),
 
    
 ]

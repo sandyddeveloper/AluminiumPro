@@ -1,0 +1,707 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% if request.user.is_superuser %}Admin Dashboard{% else %}User Dashboard{% endif %}
+{% endblock %}
+
+{% block page_title %}{% if request.user.is_superuser %}Admin Dashboard{% else %}User Dashboard{% endif %}{% endblock %}
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+ <link href="{% static 'css/table.css' %}" rel="stylesheet">
+
+
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Aluminum Data Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">Aluminum Data <span>| {{ aluminum_data.date }}</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ aluminum_data.recycled_weight }} kg</h6>
+                      <span class="text-success small pt-1 fw-bold">{{ aluminum_data.profit }}%</span> 
+                      <span class="text-muted small pt-2 ps-1">profit</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Aluminum Data Card -->
+
+            <!-- Production Efficiency Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">Production Efficiency <span>| {{ efficiency_data.date }}</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ efficiency_data.optimization_score }}</h6>
+                      <span class="text-success small pt-1 fw-bold">{{ efficiency_data.production_output }} units</span> 
+                      <span class="text-muted small pt-2 ps-1">output</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Production Efficiency Card -->
+
+            <!-- Wastage and Loss Card -->
+            <div class="col-xxl-4 col-xl-12">
+              <div class="card info-card customers-card">
+                <div class="card-body">
+                  <h5 class="card-title">Wastage and Loss <span>| {{ wastage_data.date }}</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ wastage_data.material_loss }} kg</h6>
+                      <span class="text-danger small pt-1 fw-bold">{{ wastage_data.recyclability_score }}%</span> 
+                      <span class="text-muted small pt-2 ps-1">recyclability</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Wastage and Loss Card -->
+
+            <!-- Aluminum Data Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">Cost and Profitability<span>| {{ cost_profit.date }}</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>₹{{ cost_profit.total_cost }}</h6>
+                      <span class="text-success small pt-1 fw-bold">{{ cost_profit.profit_margin }}%</span> 
+                      <span class="text-muted small pt-2 ps-1">profit</span>
+                       <p class="text-blue-500 text-lg">{{ cost_profit.energy_consumption }} kWh</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Aluminum Data Card -->
+
+            <!-- Aluminum Data Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">Inventory Management <span>| {{ inventory_management.date }}</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ inventory_management.current_inventory }} kg</h6>
+                      <span class="text-danger small pt-1 fw-bold">{{ inventory_management.future_demand }} kg</span> 
+                      <span>Demand</span>
+                      <span class="text-success fw-bold small pt-2 ps-1">{{ inventory_management.raw_material_requirement }} kg </span><span>Needed</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Aluminum Data Card -->
+            <!-- Aluminum Data Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">Environmental Impact  <span>|{{ environmental_impact.date }}</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ environmental_impact.carbon_footprint }} tons</h6>
+                      <span class="text-success fw-bold small pt-2 ps-1">{{ environmental_impact.waste_management_efficiency }}%</span><span> Waste Management</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Aluminum Data Card -->
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Aluminum Reports <span>/Today</span></h5>
+
+                  <!-- Control Panel -->
+                  <div class="d-flex justify-content-between mb-3">
+                    <div>
+                      <label for="timeRange">Time Range: </label>
+                      <select id="timeRange" class="form-select">
+                        <option value="7">Last 7 Days</option>
+                        <option value="30">Last 30 Days</option>
+                        <option value="90">Last 90 Days</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label>Show/Hide Data: </label>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="toggleOutput" checked>
+                        <label class="form-check-label" for="toggleOutput">Production Output</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="toggleRecyclability" checked>
+                        <label class="form-check-label" for="toggleRecyclability">Recyclability</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="toggleLoss" checked>
+                        <label class="form-check-label" for="toggleLoss">Material Loss</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Line Chart -->
+                  <div id="reportsChart"></div>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      // Function to update chart based on controls
+                      function updateChart(timeRange) {
+                        const productionOutput = lineData[timeRange].production_output;
+                        const recyclability = lineData[timeRange].recyclability;
+                        const materialLoss = lineData[timeRange].material_loss;
+                        const dates = lineData[timeRange].dates;
+
+                        chart.updateSeries([
+                          { name: 'Production Output', data: productionOutput },
+                          { name: 'Recyclability', data: recyclability },
+                          { name: 'Material Loss', data: materialLoss }
+                        ]);
+
+                        chart.updateOptions({
+                          xaxis: {
+                            categories: dates
+                          }
+                        });
+                      }
+
+                      // Initialize the chart
+                      const chart = new ApexCharts(document.querySelector("#reportsChart"), {
+                        series: [{
+                          name: 'Production Output',
+                          data: {{ line_data.production_output | safe }},
+                        }, {
+                          name: 'Recyclability',
+                          data: {{ line_data.recyclability | safe }},
+                        }, {
+                          name: 'Material Loss',
+                          data: {{ line_data.material_loss | safe }},
+                        }],
+                        chart: {
+                          height: 350,
+                          type: 'area',
+                          toolbar: {
+                            show: false
+                          },
+                        },
+                        markers: {
+                          size: 4
+                        },
+                        colors: ['#1e90ff', '#2eca6a', '#ff4b4b'],
+                        fill: {
+                          type: "gradient",
+                          gradient: {
+                            shadeIntensity: 1,
+                            opacityFrom: 0.3,
+                            opacityTo: 0.4,
+                            stops: [0, 90, 100]
+                          }
+                        },
+                        dataLabels: {
+                          enabled: false
+                        },
+                        stroke: {
+                          curve: 'smooth',
+                          width: 2
+                        },
+                        xaxis: {
+                          type: 'datetime',
+                          categories: {{ line_data.dates | safe }}
+                        },
+                        tooltip: {
+                          x: {
+                            format: 'dd/MM/yy'
+                          },
+                        }
+                      });
+
+                      chart.render();
+
+                      // Time range control listener
+                      document.querySelector("#timeRange").addEventListener("change", function() {
+                        const timeRange = this.value;
+                        updateChart(timeRange);
+                      });
+
+                      // Toggle data series visibility
+                      const toggleSeries = (id, seriesIndex) => {
+                        document.querySelector(id).addEventListener("change", function () {
+                          if (this.checked) {
+                            chart.showSeries(chart.w.globals.seriesNames[seriesIndex]);
+                          } else {
+                            chart.hideSeries(chart.w.globals.seriesNames[seriesIndex]);
+                          }
+                        });
+                      };
+
+                      toggleSeries("#toggleOutput", 0);
+                      toggleSeries("#toggleRecyclability", 1);
+                      toggleSeries("#toggleLoss", 2);
+                    });
+                  </script>
+                </div>
+              </div>
+            </div><!-- End Reports -->
+
+            <!-- Aluminum Production Report -->
+           
+
+          </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body pb-0">
+              <h5 class="card-title">Budget <span>| This Month</span></h5>
+              <div id="pieChart" style="min-height: 400px;" class="echart"></div>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  var pieChart = echarts.init(document.querySelector("#pieChart"));
+                  pieChart.setOption({
+                    tooltip: {
+                      trigger: 'item'
+                    },
+                    legend: {
+                      top: '5%',
+                      left: 'center'
+                    },
+                    series: [{
+                      name: 'Access to Budget',
+                      type: 'pie',
+                      radius: ['40%', '70%'],
+                      avoidLabelOverlap: false,
+                      label: {
+                        show: false,
+                        position: 'center'
+                      },
+                      emphasis: {
+                        label: {
+                          show: true,
+                          fontSize: '18',
+                          fontWeight: 'bold'
+                        }
+                      },
+                      labelLine: {
+                        show: false
+                      },
+                      data: [
+                        { value: 1048, name: 'Aluminum' },
+                        { value: 735, name: 'Efficiency' },
+                        { value: 580, name: 'Recyclability' },
+                        { value: 484, name: 'Loss' },
+                        { value: 300, name: 'Cost' }
+                      ]
+                    }]
+                  });
+                });
+              </script>
+            </div>
+             </div><!-- End Aluminum Production Report -->
+             <div class="card">
+              <div class="card-body pb-0">
+                <h5 class="card-title">Aluminum Production Report <span>| This Month</span></h5>
+                <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
+                <script>
+                  document.addEventListener("DOMContentLoaded", () => {
+                    var budgetChart = echarts.init(document.querySelector("#budgetChart"));
+                    budgetChart.setOption({
+                      legend: {
+                        data: ['Allocated Budget', 'Actual Spending']
+                      },
+                      radar: {
+                        indicator: [
+                          { name: 'Aluminum', max: 6500 },
+                          { name: 'Efficiency', max: 16000 },
+                          { name: 'Recyclability', max: 30000 },
+                          { name: 'Loss Reduction', max: 38000 },
+                          { name: 'Cost', max: 52000 }
+                        ]
+                      },
+                      series: [{
+                        name: 'Budget vs spending',
+                        type: 'radar',
+                        data: [
+                          {
+                            value: [4200, 14000, 20000, 35000, 50000],
+                            name: 'Allocated Budget'
+                          },
+                          {
+                            value: [5000, 12000, 28000, 26000, 42000],
+                            name: 'Actual Spending'
+                          }
+                        ]
+                      }]
+                    });
+                  });
+                </script>
+              </div>
+           
+          </div>
+        </div><!-- End Right side columns -->
+        <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+               <h5 class="card-title">Production Efficiency Data</h5>
+
+<!-- Check if production_table has data -->
+{% if production_table %}
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temperature</th>
+                <th>Pressure</th>
+                <th>Production Output</th>
+                <th>Optimization Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through production_table and display each row -->
+            {% for item in production_table %}
+            <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.temperature }}</td>
+                <td>{{ item.pressure }}</td>
+                <td>{{ item.production_output }}</td>
+                <td>{{ item.optimization_score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No production efficiency data available.</p>
+{% endif %}
+
+<!-- Chart Container -->
+<div class="chart-container">
+    <canvas id="productionEfficiencyChart"></canvas>
+</div>
+</div>
+</div>
+</div>
+
+<!-- JavaScript for Chart.js -->
+<script>
+    // Fetch the production data passed from Django view
+    const productionData = JSON.parse('{{ production_data | safe }}');
+
+    const ctx = document.getElementById('productionEfficiencyChart').getContext('2d');
+    const productionEfficiencyChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: productionData.labels,  // X-axis labels (dates)
+            datasets: productionData.datasets // The datasets for Temperature, Pressure, etc.
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+</div>
+<div>
+<div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Wastage and Loss Data</h1>
+
+{% if wastage_table %}
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Material Loss</th>
+                <th>Recyclability Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through wastage_table and display each row -->
+            {% for item in wastage_table %}
+            <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.material_loss }}</td>
+                <td>{{ item.recyclability_score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No Wastage and Loss data available.</p>
+{% endif %}
+</div>
+<div>
+<!-- Chart Container -->
+<div class="chart-container">
+    <canvas id="wastageandlossChart"></canvas>
+</div>
+</div>
+</div>
+</div>
+
+<!-- JavaScript for Chart.js -->
+<script>
+    // Fetch the wastage data passed from Django view
+    const wastageData = JSON.parse('{{ wastage_datas | safe }}');
+
+    const wastageCtx = document.getElementById('wastageandlossChart').getContext('2d');
+    const wastageandlossChart = new Chart(wastageCtx, {
+        type: 'bar',
+        data: {
+            labels: wastageData.labels,  // X-axis labels (dates)
+            datasets: wastageData.datasets // The datasets for Material Loss and Recyclability Score
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+</div>
+<div class="col-12">
+              <div class="card">
+                <div class="card-body">
+ <h2 class="card-title">Cost And Profitability Data</h2>
+
+{% if cop_table %}
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Raw Material Cost</th>
+                <th>Energy Consumption</th>
+                <th>Labor Cost</th>
+                <th>Total Cost</th>
+                <th>Profit Margin</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through cop_table and display each row -->
+            {% for item in cop_table %}
+            <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.raw_material_cost }}</td>
+                <td>{{ item.energy_consumption }}</td>
+                <td>{{ item.labor_cost }}</td>
+                <td>{{ item.total_cost }}</td>
+                <td>{{ item.profit_margin }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No Cost and Profitability data available.</p>
+{% endif %}
+
+<!-- Chart Container -->
+<div class="chart-container" style="height: 400px; width: 100%;">
+    <canvas id="CostandProfitabilityChart"></canvas>
+</div>
+</div>
+</div>
+</div>
+
+<!-- JavaScript for Chart.js -->
+<script>
+    // Fetch the cop_datas data passed from the Django view
+    const copData = JSON.parse('{{ cop_datas | safe }}');
+
+    const costAndProfitabilityCtx = document.getElementById('CostandProfitabilityChart').getContext('2d');
+    const costAndProfitabilityChart = new Chart(costAndProfitabilityCtx, {
+        type: 'bar',
+        data: {
+            labels: copData.labels,  // X-axis labels (dates)
+            datasets: copData.datasets  // Datasets for each cost/profit metric
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true  // Ensure the y-axis starts at 0
+                }
+            }
+        }
+    });
+</script>
+<div class="col-12">
+              <div class="card">
+                <div class="card-body">
+ <h5 class="card-title">Inventory Management</h1>
+
+<!-- Table for Inventory Data -->
+{% if inventory_table %}
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Raw Material Requirement</th>
+                <th>Current Inventory</th>
+                <th>Future Demand</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through the inventory data and display each row -->
+            {% for item in inventory_table %}
+            <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.raw_material_requirement }}</td>
+                <td>{{ item.current_inventory }}</td>
+                <td>{{ item.future_demand }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No Inventory data available.</p>
+{% endif %}
+
+<!-- Chart Container -->
+<div class="chart-container" style="height: 400px; width: 100%;">
+    <canvas id="InventorymanagementChart"></canvas>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- JavaScript for Chart.js -->
+<script>
+    // Get the chart data from the Django view
+    const chartData = JSON.parse('{{ inventory_datas | safe }}');
+
+    // Set up the chart context and configuration
+    const inventoryManagementCtx = document.getElementById('InventorymanagementChart').getContext('2d');
+    const inventoryManagementChart = new Chart(inventoryManagementCtx, {
+        type: 'bar',
+        data: {
+            labels: chartData.labels,  // X-axis labels (dates)
+            datasets: chartData.datasets  // Datasets for raw material, current inventory, and future demand
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true  // Ensure the y-axis starts at 0
+                }
+            }
+        }
+    });
+</script>
+<div class="col-12">
+              <div class="card">
+                <div class="card-body">
+ <h5 class="card-title">Environmental Impact Predictions</h5>
+
+<!-- Table for Environmental Impact Data -->
+{% if envimpact_table %}
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Carbon Footprint</th>
+                <th>Waste Management Efficiency</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through the environmental impact data and display each row -->
+            {% for item in envimpact_table %}
+            <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.carbon_footprint }}</td>
+                <td>{{ item.waste_management_efficiency }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No Environmental Impact data available.</p>
+{% endif %}
+
+<!-- Chart Container -->
+<div class="chart-container" style="position: relative; height:400px; width:100%">
+    <canvas id="environmentImpactChart"></canvas>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+    const envimpactData = JSON.parse('{{ envimpact_datas | safe }}');
+    const envimpactctx = document.getElementById('environmentImpactChart').getContext('2d');
+
+    const environmentImpactChart = new Chart(envimpactctx, {
+        type: 'bar',
+        data: {
+            labels: chartData.labels,
+            datasets: chartData.datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+      </div>
+    </section>
+</main><!-- End #main --> 
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+{% endblock content %}

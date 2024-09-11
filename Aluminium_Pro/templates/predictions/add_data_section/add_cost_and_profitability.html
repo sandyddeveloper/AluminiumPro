@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+<style>
+.form-group {
+    padding: 10px 0;
+}
+</style>
+<div class="container">
+    <h2>Cost and Profitability</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+        <div class="form-group">
+            <label for="{{ form.date.id_for_label }}">Date:</label>
+            {{ form.date }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.raw_material_cost.id_for_label }}">Raw Material Cost:</label>
+            {{ form.raw_material_cost }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.energy_consumption.id_for_label }}">Energy Consumption:</label>
+            {{ form.energy_consumption }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.labor_cost.id_for_label }}">Labor Cost:</label>
+            {{ form.labor_cost }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.revenue.id_for_label }}">Revenue:</label>
+            {{ form.revenue }}
+        </div>
+        
+        <button type="submit" class="animated-btn">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}" />
+<style>
+.avatar {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Ensures the image scales to fit the circle */
+    border-radius: 50%; /* Makes the image circular */
+}
+#edit-profile label {
+  padding-bottom: 8px;
+}
+#edit-profile input {
+  padding-bottom: 10px;
+}
+#edit-profile Textarea {
+  resize: vertical;
+  max-height: 100px;
+}
+</style>
+<div class="container">
+  <h1>Edit Profile</h1>
+  <hr />
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-3">
+      <div class="text-center">
+        {% if user.profile.avatar %}
+    <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}'s avatar" class="img-fluid my-5" style="width: 120px; height: 100px" />
+{% else %}
+    <img src="{% static 'path_to_default_avatar_image.jpg' %}" alt="{{ user.username }}'s default avatar" class="img-fluid my-5" style="width: 120px; height: 100px" />
+{% endif %}
+        <h6>{{ user.profile.full_name }}</h6>
+      </div>
+    </div>
+
+    <!-- edit form column -->
+    <div class="col-md-9 personal-info">
+      <h3>Personal info</h3>
+
+      <form
+        class="form-horizontal"
+        role="form"
+        method="POST"
+        enctype="multipart/form-data"
+        id="edit-profile"
+      >
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Full Name:</label>
+          <div class="col-lg-8">{{ form.full_name }}</div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Phone Number:</label>
+          <div class="col-lg-8">{{ form.phone_number }}</div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Profile Image:</label>
+          <div class="col-lg-8">{{ form.avatar }}</div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Job:</label>
+          <div class="col-lg-8">{{ form.job_position }}</div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Date Of Birth:</label>
+          <div class="col-lg-8">{{ form.date_of_birth }}</div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Gender:</label>
+          <div class="col-lg-8">{{ form.gender }}</div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Bio:</label>
+          <div class="col-lg-8">{{ form.bio }}</div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-offset-3 col-lg-8">
+            <input type="submit" class="btn btn-primary" value="Save Changes" />
+            <input type="reset" class="btn btn-default" value="Cancel" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<hr />
+
+{% if messages %} {% for message in messages %}
+<div class="alert alert-{{ message.tags }}">{{ message }}</div>
+{% endfor %} {% endif %}
+
+{% endblock %}

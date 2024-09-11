@@ -5,27 +5,24 @@
   --nav-font: "Poppins",  sans-serif;
 }
 
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #37517e; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #47b2e4; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --background-color: #ffffff; 
+  --default-color: #444444; 
+  --heading-color: #37517e; 
+  --accent-color: #47b2e4; 
+  --surface-color: #ffffff; 
+  --contrast-color: #ffffff; 
 }
 
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #ffffff;  /* The default color of the main navmenu links */
-  --nav-hover-color: #47b2e4; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #444444; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #47b2e4; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #ffffff; 
+  --nav-hover-color: #47b2e4; 
+  --nav-mobile-background-color: #ffffff; 
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #444444; 
+  --nav-dropdown-hover-color: #47b2e4; 
 }
 
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
 .light-background {
   --background-color: #f5f6f8;
@@ -40,14 +37,12 @@
   --contrast-color: #ffffff;
 }
 
-/* Smooth scroll */
+
 :root {
   scroll-behavior: smooth;
 }
 
-/*--------------------------------------------------------------
-# General Styling & Shared Classes
---------------------------------------------------------------*/
+
 body {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -75,47 +70,8 @@ h6 {
   font-family: var(--heading-font);
 }
 
-/* PHP Email Form Messages
-------------------------------*/
-.php-email-form .error-message {
-  display: none;
-  background: #df1529;
-  color: #ffffff;
-  text-align: left;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
 
-.php-email-form .sent-message {
-  display: none;
-  color: #ffffff;
-  background: #059652;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
 
-.php-email-form .loading {
-  display: none;
-  background: var(--surface-color);
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-}
-
-.php-email-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid var(--accent-color);
-  border-top-color: var(--surface-color);
-  animation: php-email-form-loading 1s linear infinite;
-}
 
 @keyframes php-email-form-loading {
   0% {
@@ -127,9 +83,7 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Global Header
---------------------------------------------------------------*/
+
 .header {
   --background-color: #3d4d6a;
   --heading-color: #ffffff;
@@ -191,24 +145,19 @@ h6 {
   }
 }
 
-/* Index Page Header
-------------------------------*/
+
 .index-page .header {
   --background-color: rgba(255, 255, 255, 0);
   --heading-color: #ffffff;
   --nav-color: #ffffff;
 }
 
-/* Index Page Header on Scroll
-------------------------------*/
+
 .index-page.scrolled .header {
   --background-color: rgba(40, 58, 90, 0.9);
 }
 
-/*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
-/* Desktop Navigation */
+
 @media (min-width: 1200px) {
   .navmenu {
     padding: 0;
@@ -490,9 +439,7 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Global Footer
---------------------------------------------------------------*/
+
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -648,9 +595,7 @@ h6 {
   font-size: 13px;
 }
 
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
+
 #preloader {
   position: fixed;
   inset: 0;
@@ -683,9 +628,7 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Scroll Top Button
---------------------------------------------------------------*/
+
 .scroll-top {
   position: fixed;
   visibility: hidden;
@@ -717,18 +660,15 @@ h6 {
   bottom: 15px;
 }
 
-/*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
---------------------------------------------------------------*/
+
+
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
     transition-delay: 0 !important;
   }
 }
 
-/*--------------------------------------------------------------
-# Global Page Titles & Breadcrumbs
---------------------------------------------------------------*/
+
 .page-title {
   --background-color: color-mix(in srgb, var(--default-color), transparent 96%);
   color: var(--default-color);
@@ -763,9 +703,6 @@ h6 {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-/*--------------------------------------------------------------
-# Global Sections
---------------------------------------------------------------*/
 section,
 .section {
   color: var(--default-color);
@@ -783,9 +720,7 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Global Section Titles
---------------------------------------------------------------*/
+
 .section-title {
   text-align: center;
   padding-bottom: 60px;
@@ -831,9 +766,7 @@ section,
   margin-bottom: 0;
 }
 
-/*--------------------------------------------------------------
-# Hero Section
---------------------------------------------------------------*/
+
 .hero {
   width: 100%;
   min-height: 80vh;
@@ -932,9 +865,7 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Clients Section
---------------------------------------------------------------*/
+
 .clients {
   padding: 12px 0;
 }
@@ -956,9 +887,7 @@ section,
   transform: scale(1.1);
 }
 
-/*--------------------------------------------------------------
-# About Section
---------------------------------------------------------------*/
+
 .about ul {
   list-style: none;
   padding: 0;
@@ -1007,9 +936,7 @@ section,
   transform: translate(5px, 0);
 }
 
-/*--------------------------------------------------------------
-# Why Us Section
---------------------------------------------------------------*/
+
 .why-us {
   padding: 30px 0;
 }
@@ -1118,9 +1045,7 @@ section,
   max-height: 70%;
 }
 
-/*--------------------------------------------------------------
-# Skills Section
---------------------------------------------------------------*/
+
 .skills .content h3 {
   font-size: 2rem;
   font-weight: 700;
@@ -1177,9 +1102,7 @@ section,
   background-color: var(--heading-color);
 }
 
-/*--------------------------------------------------------------
-# Services Section
---------------------------------------------------------------*/
+
 .services .service-item {
   background-color: var(--surface-color);
   box-shadow: 0px 5px 90px 0px rgba(0, 0, 0, 0.1);
@@ -1223,9 +1146,7 @@ section,
   color: var(--accent-color);
 }
 
-/*--------------------------------------------------------------
-# Call To Action Section
---------------------------------------------------------------*/
+
 .call-to-action {
   padding: 120px 0;
   position: relative;
@@ -1285,110 +1206,10 @@ section,
   border: 2px solid var(--accent-color);
 }
 
-/*--------------------------------------------------------------
-# Portfolio Section
---------------------------------------------------------------*/
-.portfolio .portfolio-filters {
-  padding: 0;
-  margin: 0 auto 20px auto;
-  list-style: none;
-  text-align: center;
-}
 
-.portfolio .portfolio-filters li {
-  cursor: pointer;
-  display: inline-block;
-  padding: 8px 20px 10px 20px;
-  margin: 0;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1;
-  margin-bottom: 5px;
-  border-radius: 50px;
-  transition: all 0.3s ease-in-out;
-  font-family: var(--heading-font);
-}
 
-.portfolio .portfolio-filters li:hover,
-.portfolio .portfolio-filters li.filter-active {
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-}
 
-.portfolio .portfolio-filters li:first-child {
-  margin-left: 0;
-}
 
-.portfolio .portfolio-filters li:last-child {
-  margin-right: 0;
-}
-
-@media (max-width: 575px) {
-  .portfolio .portfolio-filters li {
-    font-size: 14px;
-    margin: 0 0 10px 0;
-  }
-}
-
-.portfolio .portfolio-item {
-  position: relative;
-  overflow: hidden;
-}
-
-.portfolio .portfolio-item .portfolio-info {
-  opacity: 0;
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: -100%;
-  z-index: 3;
-  transition: all ease-in-out 0.5s;
-  background: color-mix(in srgb, var(--background-color), transparent 10%);
-  padding: 15px;
-}
-
-.portfolio .portfolio-item .portfolio-info h4 {
-  font-size: 18px;
-  font-weight: 600;
-  padding-right: 50px;
-}
-
-.portfolio .portfolio-item .portfolio-info p {
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  font-size: 14px;
-  margin-bottom: 0;
-  padding-right: 50px;
-}
-
-.portfolio .portfolio-item .portfolio-info .preview-link,
-.portfolio .portfolio-item .portfolio-info .details-link {
-  position: absolute;
-  right: 50px;
-  font-size: 24px;
-  top: calc(50% - 14px);
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  transition: 0.3s;
-  line-height: 0;
-}
-
-.portfolio .portfolio-item .portfolio-info .preview-link:hover,
-.portfolio .portfolio-item .portfolio-info .details-link:hover {
-  color: var(--accent-color);
-}
-
-.portfolio .portfolio-item .portfolio-info .details-link {
-  right: 14px;
-  font-size: 28px;
-}
-
-.portfolio .portfolio-item:hover .portfolio-info {
-  opacity: 1;
-  bottom: 0;
-}
-
-/*--------------------------------------------------------------
-# Team Section
---------------------------------------------------------------*/
 .team .team-member {
   background-color: var(--surface-color);
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
@@ -1513,220 +1334,7 @@ section,
   margin-left: 8px;
 }
 
-/*--------------------------------------------------------------
-# Pricing Section
---------------------------------------------------------------*/
-.pricing .pricing-item {
-  background-color: var(--surface-color);
-  box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.1);
-  border-top: 4px solid var(--background-color);
-  padding: 60px 40px;
-  height: 100%;
-  border-radius: 5px;
-}
 
-.pricing h3 {
-  font-weight: 600;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.pricing h4 {
-  color: var(--accent-color);
-  font-size: 48px;
-  font-weight: 400;
-  font-family: var(--heading-font);
-  margin-bottom: 0;
-}
-
-.pricing h4 sup {
-  font-size: 28px;
-}
-
-.pricing h4 span {
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
-  font-size: 18px;
-}
-
-.pricing ul {
-  padding: 20px 0;
-  list-style: none;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  text-align: left;
-  line-height: 20px;
-}
-
-.pricing ul li {
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
-}
-
-.pricing ul i {
-  color: #059652;
-  font-size: 24px;
-  padding-right: 3px;
-}
-
-.pricing ul .na {
-  color: color-mix(in srgb, var(--default-color), transparent 60%);
-}
-
-.pricing ul .na i {
-  color: color-mix(in srgb, var(--default-color), transparent 60%);
-}
-
-.pricing ul .na span {
-  text-decoration: line-through;
-}
-
-.pricing .buy-btn {
-  color: var(--accent-color);
-  display: inline-block;
-  padding: 8px 35px 10px 35px;
-  border-radius: 50px;
-  transition: none;
-  font-size: 16px;
-  font-weight: 500;
-  font-family: var(--heading-font);
-  transition: 0.3s;
-  border: 1px solid var(--accent-color);
-}
-
-.pricing .buy-btn:hover {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-}
-
-.pricing .featured {
-  border-top-color: var(--accent-color);
-}
-
-.pricing .featured .buy-btn {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-}
-
-@media (max-width: 992px) {
-  .pricing .box {
-    max-width: 60%;
-    margin: 0 auto 30px auto;
-  }
-}
-
-@media (max-width: 767px) {
-  .pricing .box {
-    max-width: 80%;
-    margin: 0 auto 30px auto;
-  }
-}
-
-@media (max-width: 420px) {
-  .pricing .box {
-    max-width: 100%;
-    margin: 0 auto 30px auto;
-  }
-}
-
-/*--------------------------------------------------------------
-# Testimonials Section
---------------------------------------------------------------*/
-.testimonials .section-header {
-  margin-bottom: 40px;
-}
-
-.testimonials .testimonials-carousel,
-.testimonials .testimonials-slider {
-  overflow: hidden;
-}
-
-.testimonials .testimonial-item {
-  text-align: center;
-}
-
-.testimonials .testimonial-item .testimonial-img {
-  width: 120px;
-  border-radius: 50%;
-  border: 4px solid var(--background-color);
-  margin: 0 auto;
-}
-
-.testimonials .testimonial-item h3 {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px 0 5px 0;
-}
-
-.testimonials .testimonial-item h4 {
-  font-size: 14px;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  margin: 0 0 15px 0;
-}
-
-.testimonials .testimonial-item .stars {
-  margin-bottom: 15px;
-}
-
-.testimonials .testimonial-item .stars i {
-  color: #ffc107;
-  margin: 0 1px;
-}
-
-.testimonials .testimonial-item .quote-icon-left,
-.testimonials .testimonial-item .quote-icon-right {
-  color: color-mix(in srgb, var(--accent-color), transparent 50%);
-  font-size: 26px;
-  line-height: 0;
-}
-
-.testimonials .testimonial-item .quote-icon-left {
-  display: inline-block;
-  left: -5px;
-  position: relative;
-}
-
-.testimonials .testimonial-item .quote-icon-right {
-  display: inline-block;
-  right: -5px;
-  position: relative;
-  top: 10px;
-  transform: scale(-1, -1);
-}
-
-.testimonials .testimonial-item p {
-  font-style: italic;
-  margin: 0 auto 15px auto;
-}
-
-.testimonials .swiper-wrapper {
-  height: auto;
-}
-
-.testimonials .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  opacity: 1;
-  background-color: color-mix(in srgb, var(--default-color), transparent 85%);
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--accent-color);
-}
-
-@media (min-width: 992px) {
-  .testimonials .testimonial-item p {
-    width: 80%;
-  }
-}
-
-/*--------------------------------------------------------------
-# Faq 2 Section
---------------------------------------------------------------*/
 .faq-2 .faq-container {
   margin-top: 15px;
 }
@@ -1814,9 +1422,7 @@ section,
   color: var(--accent-color);
 }
 
-/*--------------------------------------------------------------
-# Contact Section
---------------------------------------------------------------*/
+
 .contact .info-wrap {
   background-color: var(--surface-color);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
@@ -1920,9 +1526,6 @@ section,
   background: color-mix(in srgb, var(--accent-color), transparent 25%);
 }
 
-/*--------------------------------------------------------------
-# Portfolio Details Section
---------------------------------------------------------------*/
 .portfolio-details .portfolio-details-slider img {
   width: 100%;
 }
@@ -1982,9 +1585,7 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 30%);
 }
 
-/*--------------------------------------------------------------
-# Service Details Section
---------------------------------------------------------------*/
+
 .service-details .services-list {
   background-color: var(--surface-color);
   padding: 10px 30px;

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+<style>
+.form-group {
+    padding: 10px 0;
+}
+</style>
+<div class="container">
+    <h2>Real-Time Metric</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+        <div class="form-group">
+            <label for="{{ form.metric_name.id_for_label }}">Metric Name:</label>
+            {{ form.metric_name }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.current_value.id_for_label }}">Current Value:</label>
+            {{ form.current_value }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.threshold_value.id_for_label }}">Threshold Value:</label>
+            {{ form.threshold_value }}
+        </div>
+        
+        <button type="submit" class="animated-btn">Submit</button>
+    </form>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+<style>
+.form-group {
+    padding: 10px 0;
+}
+</style>
+<div class="container">
+    <h2>Wastage and Loss</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+        <div class="form-group">
+            <label for="{{ form.date.id_for_label }}">Date:</label>
+            {{ form.date }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.material_loss.id_for_label }}">Material Loss:</label>
+            {{ form.material_loss }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.recyclability_score.id_for_label }}">Recyclability Score:</label>
+            {{ form.recyclability_score }}
+        </div>
+        
+        <button type="submit" class="animated-btn">Submit</button>
+    </form>
+</div>
+{% endblock %}
+
+

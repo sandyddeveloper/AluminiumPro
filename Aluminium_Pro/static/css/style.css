@@ -28,9 +28,7 @@ h6 {
   font-family: "Nunito", sans-serif;
 }
 
-/*--------------------------------------------------------------
-# Main
---------------------------------------------------------------*/
+
 #main {
   margin-top: 20px;
   padding: 20px 30px;
@@ -43,9 +41,7 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Page Title
---------------------------------------------------------------*/
+
 .pagetitle {
   margin-bottom: 10px;
 }
@@ -57,9 +53,7 @@ h6 {
   color: #012970;
 }
 
-/*--------------------------------------------------------------
-# Back to top button
---------------------------------------------------------------*/
+
 .back-to-top {
   position: fixed;
   visibility: hidden;
@@ -90,10 +84,7 @@ h6 {
   opacity: 1;
 }
 
-/*--------------------------------------------------------------
-# Override some default Bootstrap stylings
---------------------------------------------------------------*/
-/* Dropdown menus */
+
 .dropdown-menu {
   border-radius: 4px;
   padding: 10px 0;
@@ -206,7 +197,6 @@ h6 {
   border-color: #d3d3d4;
 }
 
-/* Card */
 .card {
   margin-bottom: 30px;
   border: none;
@@ -244,14 +234,14 @@ h6 {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
-/* Alerts */
+
 .alert-heading {
   font-weight: 500;
   font-family: "Poppins", sans-serif;
   font-size: 20px;
 }
 
-/* Close Button */
+
 .btn-close {
   background-size: 25%;
 }
@@ -261,7 +251,7 @@ h6 {
   box-shadow: none;
 }
 
-/* Accordion */
+
 .accordion-item {
   border: 1px solid #ebeef4;
 }
@@ -293,7 +283,7 @@ h6 {
   font-size: 15px;
 }
 
-/* Breadcrumbs */
+
 .breadcrumb {
   font-size: 14px;
   font-family: "Nunito", sans-serif;
@@ -319,7 +309,7 @@ h6 {
   font-weight: 600;
 }
 
-/* Bordered Tabs */
+
 .nav-tabs-bordered {
   border-bottom: 2px solid #ebeef4;
 }
@@ -341,9 +331,7 @@ h6 {
   border-bottom: 2px solid #4154f1;
 }
 
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
+
 .logo {
   line-height: 1;
 }
@@ -373,8 +361,6 @@ h6 {
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
   padding-left: 20px;
-  /* Toggle Sidebar Button */
-  /* Search Bar */
 }
 
 .header .toggle-sidebar-btn {
@@ -444,9 +430,7 @@ h6 {
   color: #012970;
 }
 
-/*--------------------------------------------------------------
-# Header Nav
---------------------------------------------------------------*/
+
 .header-nav ul {
   list-style: none;
 }
@@ -590,9 +574,7 @@ h6 {
   background-color: #f6f9ff;
 }
 
-/*--------------------------------------------------------------
-# Sidebar
---------------------------------------------------------------*/
+
 .sidebar {
   position: fixed;
   top: 60px;
@@ -753,10 +735,7 @@ h6 {
   background-color: #4154f1;
 }
 
-/*--------------------------------------------------------------
-# Dashboard
---------------------------------------------------------------*/
-/* Filter dropdown */
+
 .dashboard .filter {
   position: absolute;
   right: 0px;
@@ -794,7 +773,7 @@ h6 {
   padding: 8px 15px;
 }
 
-/* Info Cards */
+
 .dashboard .info-card {
   padding-bottom: 10px;
 }
@@ -957,9 +936,7 @@ h6 {
 .custom-padding-left{
   padding-left: 680px !important;
 }
-/*--------------------------------------------------------------
-# Icons list page
---------------------------------------------------------------*/
+
 .iconslist {
   display: grid;
   max-width: 100%;
@@ -993,9 +970,7 @@ h6 {
   color: #666;
 }
 
-/*--------------------------------------------------------------
-# Profie Page
---------------------------------------------------------------*/
+
 .profile .profile-card img {
   max-width: 120px;
 }
@@ -1047,9 +1022,6 @@ h6 {
   max-width: 120px;
 }
 
-/*--------------------------------------------------------------
-# F.A.Q Page
---------------------------------------------------------------*/
 .faq .basic h6 {
   font-size: 18px;
   font-weight: 600;
@@ -1060,9 +1032,7 @@ h6 {
   color: #6980aa;
 }
 
-/*--------------------------------------------------------------
-# Contact
---------------------------------------------------------------*/
+
 .contact .info-box {
   padding: 28px 30px;
 }
@@ -1171,9 +1141,7 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Error 404
---------------------------------------------------------------*/
+
 .error-404 {
   padding: 30px;
 }
@@ -1209,9 +1177,7 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
+
 .footer {
   padding: 20px 0;
   font-size: 14px;

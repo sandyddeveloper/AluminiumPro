@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <link href="{% static 'css/table.css' %}" rel="stylesheet">
+
+<h1>Environmental Impact Predictions</h1>
+
+{% if data %}
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Carbon FootPrint</th>
+                <th>Wastage Management Efficiency</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for datas in data %}
+            <tr>
+                <td>{{ datas.date }}</td>
+                <td>{{ datas.carbon_footprint }}</td>
+                <td>{{ datas.waste_management_efficiency  }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No Wastage and Loss data available.</p>
+{% endif %}
+
+<div class="chart-container">
+    <canvas id="EnvironmentimpactChart"></canvas>
+</div>
+
+<script>
+const chartData = JSON.parse('{{ chart_data | safe }}');
+console.log(chartData);
+
+const EnvironmentimpactCtx = document.getElementById('EnvironmentimpactChart').getContext('2d');
+const EnvironmentimpactChart = new Chart(EnvironmentimpactCtx, {
+    type: 'bar',
+    data: {
+        labels: chartData.labels,
+        datasets: chartData.datasets
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+{% endblock %}

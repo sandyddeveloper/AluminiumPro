@@ -3,7 +3,6 @@ input {
   }
 
 
-/* Button Styles */
 .animated-btn {
     padding: 12px 20px;
     font-size: 1.1rem;
@@ -20,20 +19,19 @@ input {
     outline: none;
 }
 
-/* Hover 3D effect */
 .animated-btn:hover {
     transform: translateY(-5px) scale(1.05);
     background: linear-gradient(120deg, #8e44ad, #2980b9);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Active state to mimic pressing the button */
+
 .animated-btn:active {
     transform: translateY(1px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Shine Effect on Hover */
+
 .animated-btn::before {
     content: '';
     position: absolute;
@@ -53,7 +51,7 @@ input {
     opacity: 1;
 }
 
-/* Gradient Animation on Hover */
+
 .animated-btn::after {
     content: '';
     position: absolute;
