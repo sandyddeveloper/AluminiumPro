@@ -5,127 +5,123 @@
 <h1>Search Results for "{{ query }}"</h1>
 
 <h2>Aluminum Data</h2>
-    {% if aluminum_data_page_obj %}
-        <ul>
-            {% for result in aluminum_data_page_obj %}
-                <li>{{ result }}</li>
-            {% endfor %}
-        </ul>
-        <div class="pagination">
-            {% if aluminum_data_page_obj.has_previous %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ aluminum_data_page_obj.previous_page_number }}">Previous</a>
-            {% endif %}
-            <span>Page {{ aluminum_data_page_obj.number }} of {{ aluminum_data_page_obj.paginator.num_pages }}</span>
-            {% if aluminum_data_page_obj.has_next %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ aluminum_data_page_obj.next_page_number }}">Next</a>
-            {% endif %}
-        </div>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
+{% if aluminum_data_page_obj %}
+    <ul>
+        {% for result in aluminum_data_page_obj %}
+            <li>{{ result }}</li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        {% if aluminum_data_page_obj.has_previous %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&aluminum_page={{ aluminum_data_page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span>Page {{ aluminum_data_page_obj.number }} of {{ aluminum_data_page_obj.paginator.num_pages }}</span>
+        {% if aluminum_data_page_obj.has_next %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&aluminum_page={{ aluminum_data_page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
 
-    <!-- Results for Real Time Metric -->
-    <h2>Real Time Metric</h2>
-    {% if real_time_metric_page_obj %}
-        <ul>
-            {% for result in real_time_metric_page_obj %}
-                <li>{{ result }}</li>
-            {% endfor %}
-        </ul>
-        <div class="pagination">
-            {% if real_time_metric_page_obj.has_previous %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ real_time_metric_page_obj.previous_page_number }}">Previous</a>
-            {% endif %}
-            <span>Page {{ real_time_metric_page_obj.number }} of {{ real_time_metric_page_obj.paginator.num_pages }}</span>
-            {% if real_time_metric_page_obj.has_next %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ real_time_metric_page_obj.next_page_number }}">Next</a>
-            {% endif %}
-        </div>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
+<h2>Real Time Metric</h2>
+{% if real_time_metric_page_obj %}
+    <ul>
+        {% for result in real_time_metric_page_obj %}
+            <li>{{ result }}</li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        {% if real_time_metric_page_obj.has_previous %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&realtime_page={{ real_time_metric_page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span>Page {{ real_time_metric_page_obj.number }} of {{ real_time_metric_page_obj.paginator.num_pages }}</span>
+        {% if real_time_metric_page_obj.has_next %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&realtime_page={{ real_time_metric_page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
 
-    <!-- Results for Production Efficiency -->
-    <h2>Production Efficiency</h2>
-    {% if production_efficiency_page_obj %}
-        <ul>
-            {% for result in production_efficiency_page_obj %}
-                <li>{{ result }}</li>
-            {% endfor %}
-        </ul>
-        <div class="pagination">
-            {% if production_efficiency_page_obj.has_previous %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ production_efficiency_page_obj.previous_page_number }}">Previous</a>
-            {% endif %}
-            <span>Page {{ production_efficiency_page_obj.number }} of {{ production_efficiency_page_obj.paginator.num_pages }}</span>
-            {% if production_efficiency_page_obj.has_next %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ production_efficiency_page_obj.next_page_number }}">Next</a>
-            {% endif %}
-        </div>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
+<h2>Production Efficiency</h2>
+{% if production_efficiency_page_obj %}
+    <ul>
+        {% for result in production_efficiency_page_obj %}
+            <li>{{ result }}</li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        {% if production_efficiency_page_obj.has_previous %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&efficiency_page={{ production_efficiency_page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span>Page {{ production_efficiency_page_obj.number }} of {{ production_efficiency_page_obj.paginator.num_pages }}</span>
+        {% if production_efficiency_page_obj.has_next %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&efficiency_page={{ production_efficiency_page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
 
-    <!-- Results for Cost & Profitability -->
-    <h2>Cost & Profitability</h2>
-    {% if cost_profitability_page_obj %}
-        <ul>
-            {% for result in cost_profitability_page_obj %}
-                <li>{{ result }}</li>
-            {% endfor %}
-        </ul>
-        <div class="pagination">
-            {% if cost_profitability_page_obj.has_previous %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ cost_profitability_page_obj.previous_page_number }}">Previous</a>
-            {% endif %}
-            <span>Page {{ cost_profitability_page_obj.number }} of {{ cost_profitability_page_obj.paginator.num_pages }}</span>
-            {% if cost_profitability_page_obj.has_next %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ cost_profitability_page_obj.next_page_number }}">Next</a>
-            {% endif %}
-        </div>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
+<h2>Cost & Profitability</h2>
+{% if cost_profitability_page_obj %}
+    <ul>
+        {% for result in cost_profitability_page_obj %}
+            <li>{{ result }}</li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        {% if cost_profitability_page_obj.has_previous %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&profit_page={{ cost_profitability_page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span>Page {{ cost_profitability_page_obj.number }} of {{ cost_profitability_page_obj.paginator.num_pages }}</span>
+        {% if cost_profitability_page_obj.has_next %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&profit_page={{ cost_profitability_page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
 
-    <!-- Results for Environmental Impact -->
-    <h2>Environmental Impact</h2>
-    {% if environmental_impact_page_obj %}
-        <ul>
-            {% for result in environmental_impact_page_obj %}
-                <li>{{ result }}</li>
-            {% endfor %}
-        </ul>
-        <div class="pagination">
-            {% if environmental_impact_page_obj.has_previous %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ environmental_impact_page_obj.previous_page_number }}">Previous</a>
-            {% endif %}
-            <span>Page {{ environmental_impact_page_obj.number }} of {{ environmental_impact_page_obj.paginator.num_pages }}</span>
-            {% if environmental_impact_page_obj.has_next %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ environmental_impact_page_obj.next_page_number }}">Next</a>
-            {% endif %}
-        </div>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
+<h2>Environmental Impact</h2>
+{% if environmental_impact_page_obj %}
+    <ul>
+        {% for result in environmental_impact_page_obj %}
+            <li>{{ result }}</li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        {% if environmental_impact_page_obj.has_previous %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&impact_page={{ environmental_impact_page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span>Page {{ environmental_impact_page_obj.number }} of {{ environmental_impact_page_obj.paginator.num_pages }}</span>
+        {% if environmental_impact_page_obj.has_next %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&impact_page={{ environmental_impact_page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
 
-    <!-- Results for Inventory Management -->
-    <h2>Inventory Management</h2>
-    {% if inventory_management_page_obj %}
-        <ul>
-            {% for result in inventory_management_page_obj %}
-                <li>{{ result }}</li>
-            {% endfor %}
-        </ul>
-        <div class="pagination">
-            {% if inventory_management_page_obj.has_previous %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ inventory_management_page_obj.previous_page_number }}">Previous</a>
-            {% endif %}
-            <span>Page {{ inventory_management_page_obj.number }} of {{ inventory_management_page_obj.paginator.num_pages }}</span>
-            {% if inventory_management_page_obj.has_next %}
-                <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&page={{ inventory_management_page_obj.next_page_number }}">Next</a>
-            {% endif %}
-        </div>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
+<h2>Inventory Management</h2>
+{% if inventory_management_page_obj %}
+    <ul>
+        {% for result in inventory_management_page_obj %}
+            <li>{{ result }}</li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        {% if inventory_management_page_obj.has_previous %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&inventory_page={{ inventory_management_page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span>Page {{ inventory_management_page_obj.number }} of {{ inventory_management_page_obj.paginator.num_pages }}</span>
+        {% if inventory_management_page_obj.has_next %}
+            <a href="?query={{ query }}&model={{ selected_model }}&start_date={{ start_date }}&end_date={{ end_date }}&inventory_page={{ inventory_management_page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+
     {% endblock %}

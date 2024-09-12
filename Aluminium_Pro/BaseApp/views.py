@@ -432,7 +432,7 @@ def monitor_metrics(request):
 
             print(f"Alert: {metric.metric_name} exceeded its threshold!")
 
-    return render(request, 'predictions/monitor_metrics.html', {'metrics': metrics})
+    return render(request, 'predictions/monitor_section/monitor_metrics.html', {'metrics': metrics})
 
 
 
@@ -728,88 +728,77 @@ def InventoryManagementViewSet(request):
 
 
 
-def search_results(request):
 
+def search_results(request):
     query = request.GET.get('query', '')
     selected_model = request.GET.get('model', 'all')
     start_date = request.GET.get('start_date', '')
     end_date = request.GET.get('end_date', '')
-    queries = query.split() 
+    queries = query.split()
 
-    aluminum_data_results = AluminumData.objects.all()
-    real_time_metric_results = RealTimeMetric.objects.all()
-    production_efficiency_results = ProductionEfficiency.objects.all()
-    cost_profitability_results = CostAndProfitability.objects.all()
-    environmental_impact_results = EnvironmentalImpact.objects.all()
-    inventory_management_results = InventoryManagement.objects.all()
+    # Initialize empty QuerySets for each model
+    aluminum_data_results = AluminumData.objects.none()
+    real_time_metric_results = RealTimeMetric.objects.none()
+    production_efficiency_results = ProductionEfficiency.objects.none()
+    cost_profitability_results = CostAndProfitability.objects.none()
+    environmental_impact_results = EnvironmentalImpact.objects.none()
+    inventory_management_results = InventoryManagement.objects.none()
 
     if query:
-      
         for keyword in queries:
             if selected_model == 'AluminumData' or selected_model == 'all':
-                aluminum_data_results = aluminum_data_results.filter(
+                aluminum_data_results |= AluminumData.objects.filter(
                     Q(profile__icontains=keyword) | Q(date__icontains=keyword)
                 )
             if selected_model == 'RealTimeMetric' or selected_model == 'all':
-                real_time_metric_results = real_time_metric_results.filter(
+                real_time_metric_results |= RealTimeMetric.objects.filter(
                     Q(metric_name__icontains=keyword) | Q(timestamp__icontains=keyword)
                 )
             if selected_model == 'ProductionEfficiency' or selected_model == 'all':
-                production_efficiency_results = production_efficiency_results.filter(
+                production_efficiency_results |= ProductionEfficiency.objects.filter(
                     Q(date__icontains=keyword) | Q(temperature__icontains=keyword) | Q(pressure__icontains=keyword)
                 )
             if selected_model == 'CostProfitability' or selected_model == 'all':
-                cost_profitability_results = cost_profitability_results.filter(
+                cost_profitability_results |= CostAndProfitability.objects.filter(
                     Q(date__icontains=keyword) | Q(revenue__icontains=keyword) | Q(profit_margin__icontains=keyword)
                 )
             if selected_model == 'EnvironmentalImpact' or selected_model == 'all':
-                environmental_impact_results = environmental_impact_results.filter(
+                environmental_impact_results |= EnvironmentalImpact.objects.filter(
                     Q(date__icontains=keyword) | Q(carbon_footprint__icontains=keyword)
                 )
             if selected_model == 'InventoryManagement' or selected_model == 'all':
-                inventory_management_results = inventory_management_results.filter(
+                inventory_management_results |= InventoryManagement.objects.filter(
                     Q(date__icontains=keyword) | Q(raw_material_requirement__icontains=keyword)
                 )
 
- 
     if start_date and end_date:
         try:
             start = datetime.strptime(start_date, "%Y-%m-%d")
             end = datetime.strptime(end_date, "%Y-%m-%d")
-
+            
+            date_range = [start, end]
             if selected_model == 'AluminumData' or selected_model == 'all':
-                aluminum_data_results = aluminum_data_results.filter(date__range=[start, end])
+                aluminum_data_results = aluminum_data_results.filter(date__range=date_range)
             if selected_model == 'RealTimeMetric' or selected_model == 'all':
-                real_time_metric_results = real_time_metric_results.filter(timestamp__date__range=[start, end])
+                real_time_metric_results = real_time_metric_results.filter(timestamp__date__range=date_range)
             if selected_model == 'ProductionEfficiency' or selected_model == 'all':
-                production_efficiency_results = production_efficiency_results.filter(date__range=[start, end])
+                production_efficiency_results = production_efficiency_results.filter(date__range=date_range)
             if selected_model == 'CostProfitability' or selected_model == 'all':
-                cost_profitability_results = cost_profitability_results.filter(date__range=[start, end])
+                cost_profitability_results = cost_profitability_results.filter(date__range=date_range)
             if selected_model == 'EnvironmentalImpact' or selected_model == 'all':
-                environmental_impact_results = environmental_impact_results.filter(date__range=[start, end])
+                environmental_impact_results = environmental_impact_results.filter(date__range=date_range)
             if selected_model == 'InventoryManagement' or selected_model == 'all':
-                inventory_management_results = inventory_management_results.filter(date__range=[start, end])
+                inventory_management_results = inventory_management_results.filter(date__range=date_range)
         except ValueError:
-            pass  
+            pass
 
-
-    page_number = request.GET.get('page', 1)
-    
-
-    aluminum_data_paginator = Paginator(aluminum_data_results, 10)
-    real_time_metric_paginator = Paginator(real_time_metric_results, 10)
-    production_efficiency_paginator = Paginator(production_efficiency_results, 10)
-    cost_profitability_paginator = Paginator(cost_profitability_results, 10)
-    environmental_impact_paginator = Paginator(environmental_impact_results, 10)
-    inventory_management_paginator = Paginator(inventory_management_results, 10)
-
-
-    aluminum_data_page_obj = aluminum_data_paginator.get_page(page_number)
-    real_time_metric_page_obj = real_time_metric_paginator.get_page(page_number)
-    production_efficiency_page_obj = production_efficiency_paginator.get_page(page_number)
-    cost_profitability_page_obj = cost_profitability_paginator.get_page(page_number)
-    environmental_impact_page_obj = environmental_impact_paginator.get_page(page_number)
-    inventory_management_page_obj = inventory_management_paginator.get_page(page_number)
+    # Paginate each result set
+    aluminum_data_page_obj = Paginator(aluminum_data_results, 10).get_page(request.GET.get('aluminum_page', 1))
+    real_time_metric_page_obj = Paginator(real_time_metric_results, 10).get_page(request.GET.get('realtime_page', 1))
+    production_efficiency_page_obj = Paginator(production_efficiency_results, 10).get_page(request.GET.get('efficiency_page', 1))
+    cost_profitability_page_obj = Paginator(cost_profitability_results, 10).get_page(request.GET.get('profit_page', 1))
+    environmental_impact_page_obj = Paginator(environmental_impact_results, 10).get_page(request.GET.get('impact_page', 1))
+    inventory_management_page_obj = Paginator(inventory_management_results, 10).get_page(request.GET.get('inventory_page', 1))
 
     context = {
         'query': query,
