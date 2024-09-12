@@ -96,8 +96,9 @@ class SetNewPasswordView(View):
         }
         
         password = request.POST['password']
-        confirmPassword = request.POST['confirmPassword']
-        if password!= confirmPassword:
+        confirmPassword = request.POST['password2']  # Correct field name
+        
+        if password != confirmPassword:
             messages.warning(request, "Passwords do not match")
             return render(request,'auth/reset-new-password.html', context)
         
@@ -110,7 +111,7 @@ class SetNewPasswordView(View):
             return redirect('custom_login')
         
         except DjangoUnicodeDecodeError as identifier:
-            messages.error(request, "Something Went Wrong")
+            messages.error(request, "Something went wrong")
             return render(request,'auth/reset-new-password.html', context)
         
 def SuccessPage(request):
