@@ -933,9 +933,40 @@ h6 {
   max-width: 60px;
 }
 
-.custom-padding-left{
+.custom-padding-left {
   padding-left: 680px !important;
 }
+
+@media (max-width: 1200px) {
+  .custom-padding-left {
+      padding-left: 320px  !important; 
+  }
+}
+
+@media (max-width: 992px) {
+  .custom-padding-left {
+      padding-left: 570px !important; /* For medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-padding-left {
+      padding-left: 520px !important; /* For small screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .custom-padding-left {
+      padding-left: 400px !important; /* For extra-small screens */
+  }
+}
+
+@media (max-width: 400px) {
+  .custom-padding-left {
+      padding-left: 200px !important; /* For very small screens */
+  }
+}
+
 
 .iconslist {
   display: grid;
