@@ -1,6 +1,6 @@
 from pathlib import Path
 import os
-
+import dj_database_url
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,7 +75,7 @@ DATABASES = {
 }
 }
 
-
+DATABASES['default'] = dj_database_url.parse("postgresql://aluminium_pro_db_user:G7Gpk9K0KF4ZlgVwAKUAE02kaFoyr4ef@dpg-criiacdumphs73cklqj0-a.oregon-postgres.render.com/aluminium_pro_db")
 
 AUTH_PASSWORD_VALIDATORS = [
     {

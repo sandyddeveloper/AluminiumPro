@@ -6,12 +6,12 @@ from BaseApp.models import (AluminumData, RealTimeMetric, ProductionEfficiency,
                           WastageAndLoss, CostAndProfitability, EnvironmentalImpact, InventoryManagement)
 
 class Command(BaseCommand):
-    help = 'Generate sample data for 10 days'
+    help = 'Generate sample data for 2 days'
 
     def handle(self, *args, **kwargs):
         today = timezone.now().date()
 
-        for i in range(10):
+        for i in range(2):
             date = today - timedelta(days=i)
 
             # AluminumData
@@ -81,4 +81,4 @@ class Command(BaseCommand):
                 current_inventory=current_inventory
             )
 
-        self.stdout.write(self.style.SUCCESS('Successfully generated 10 days of sample data.'))
+        self.stdout.write(self.style.SUCCESS('Successfully generated 2 days of sample data.'))
