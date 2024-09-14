@@ -1,17 +1,18 @@
 from pathlib import Path
 import os
 import dj_database_url
+from decouple import config
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-77h3at1e*%blu0-rrrw9np^^wn3-kli@*=+9z*=u(d3-ptq1d-'
+SECRET_KEY = config("SECRET_KEY")
 
 
-DEBUG = True
+DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(',')
 
 
 
@@ -75,7 +76,7 @@ DATABASES = {
 }
 }
 
-DATABASES['default'] = dj_database_url.parse("postgresql://aluminium_pro_db_user:G7Gpk9K0KF4ZlgVwAKUAE02kaFoyr4ef@dpg-criiacdumphs73cklqj0-a.oregon-postgres.render.com/aluminium_pro_db")
+DATABASES['default'] = dj_database_url.parse(config("DATABASE_URL"))
 
 AUTH_PASSWORD_VALIDATORS = [
     {
